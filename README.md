@@ -6,7 +6,7 @@ API de gerenciamento de tarefas construída com FastAPI + PostgreSQL.
 
 - [x] Etapa 0 — Setup do ambiente
 - [x] Etapa 1 — Modelagem de dados
-- [ ] Etapa 2 — Autenticação (JWT)
+- [x] Etapa 2 — Autenticação (JWT)
 - [ ] Etapa 3 — CRUD de Projetos
 - [ ] Etapa 4 — CRUD de Tarefas
 - [ ] Etapa 5 — Subtarefas
@@ -66,6 +66,24 @@ Campos de `Task` relevantes:
 - `estimated_minutes`: tempo estimado em minutos
 - `due_date`: prazo de entrega
 - `created_at` / `completed_at`: usados na Etapa 6 (dashboard)
+
+## Autenticação (Etapa 2)
+
+Fluxo JWT completo:
+
+1. **Registro**: `POST /auth/register` — body `{"email": "...", "password": "..."}`
+2. **Login**: `POST /auth/login` — form-urlencoded (`username` = email, `password`) — retorna `access_token`
+3. **Rotas protegidas**: enviar header `Authorization: Bearer <token>`. Teste com `GET /auth/me`
+
+No Swagger (`/docs`), use o botão **Authorize** e cole o token — as próximas requisições já vão autenticadas.
+
+### Rodando os testes
+
+```bash
+docker compose exec api pytest
+```
+
+Os testes usam um banco SQLite isolado (não tocam no Postgres real).
 
 ## Estrutura de pastas
 
