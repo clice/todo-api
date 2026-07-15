@@ -20,7 +20,7 @@ Pré-requisito: Docker e Docker Compose instalados.
 
 ```bash
 # 1. Suba os containers (API + Postgres)
-docker compose up --build
+docker compose up --build -d
 
 # 2. Acesse a documentação interativa
 http://localhost:8000/docs
@@ -36,18 +36,16 @@ Se tudo estiver certo, `/health` deve responder:
 
 ## Estrutura de pastas
 
-```
-todo-api/
-├── app/
-│   ├── core/          # configurações e conexão com banco
-│   ├── models/         # modelos SQLAlchemy (Etapa 1)
-│   ├── routers/         # endpoints (Etapa 2+)
-│   └── main.py         # ponto de entrada
-├── docker-compose.yml
-├── Dockerfile
-├── requirements.txt
-└── .env.example
-```
+    todo-api/
+    ├── app/
+    │   ├── core/           # configurações e conexão com banco
+    │   ├── models/         # modelos SQLAlchemy (Etapa 1)
+    │   ├── routers/        # endpoints (Etapa 2+)
+    │   └── main.py         # ponto de entrada
+    ├── docker-compose.yml
+    ├── Dockerfile
+    ├── requirements.txt
+    └── .env.example
 
 ## Stack
 
